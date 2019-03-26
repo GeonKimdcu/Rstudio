@@ -52,3 +52,20 @@ load("df_excel_exam.xlsx")
 df_excel_exam <-read_excel("excel_exam.xlsx")
 df_excel_exam
 
+
+
+//  dim  =>  디맨션 =차원   dimension
+
+
+//library  <- 불러오는 함수  로드하는 것임
+
+
+library(ggplot2)
+head(mpg)
+tail(mpg)
+str(mpg)
+summary(mpg)
+
+
+//더블콜론(::)을 이용하면 특정 패키지에 들어있는 함수나 데이터를 지칭할 수 있다.
+- ggplot2::mpg란 ggplot2에 들어있는 mpg데이터를 지칭한다.
