@@ -6,3 +6,49 @@ rmdir 리무브 디렉토리  디렉토리 제거
 cd / 는 맨 처음디렉토리로 이동
 .  -> Current Directory   현재 디렉토리
 .. -> Parent Directory  이전 디렉토리 (부모디렉토리)
+
+
+// write.csv(변수명, file = "파일명" )
+// R에서 데이트프레임을 만들고 .csv 파일 생성하기
+df_midterm1 <- data.frame(english = c(90,80,60,70),
+                          math = c(50,60,100,20),
+                          class = c(1,1,2,2))
+df_midterm1
+write.csv(df_midterm1, file = "df_midterm1.csv")
+// csv는 여러파일에서 공통적으로 쓰이는 파일 포메이션
+
+df_csv_exam
+install.packages("readxl")
+library(readxl)
+df_excel_exam <- read_excel("excel_exam.xlsx")
+df_excel_exam
+df_exam1 <- read_excel("excel_Exam_sheet.xlsx", sheet = 3)
+df_exam1
+df_midterm <- read_excel("df_midterm.csv")
+df_midterm <- read.csv("df_midterm.csv")
+df_midterm
+// write.csv(변수명, file = "파일명" )
+// R에서 데이트프레임을 만들고 .csv 파일 생성하기
+df_midterm1 <- data.frame(english = c(90,80,60,70),
+                          math = c(50,60,100,20),
+                          class = c(1,1,2,2))
+df_midterm1
+write.csv(df_midterm1, file = "df_midterm1.csv")
+
+//데이터 프레임을 RData 파일로 저장하기
+save(df_midterm1, file = "df_midterm1.rda")
+
+//RData 불러오기
+rm(df_midterm1)  // rm은 삭제
+df_midterm1
+//삭제했으니 다시 불러오기
+load("df_midterm1.rda")
+df_midterm1
+rm(df_exam1)
+rm(df_excel_exam)
+rm(df_midterm)
+load("excel_exam.xlsx")
+load("df_excel_exam.xlsx")
+df_excel_exam <-read_excel("excel_exam.xlsx")
+df_excel_exam
+
