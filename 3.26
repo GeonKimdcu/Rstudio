@@ -1,0 +1,8 @@
+윈도우 +R -> cmd 입력
+dir 현재 디렉토리 표시
+cd 디렉토리 이동
+mkdir 메이크 디렉토리 디렉토리 생성
+rmdir 리무브 디렉토리  디렉토리 제거
+cd / 는 맨 처음디렉토리로 이동
+.  -> Current Directory   현재 디렉토리
+.. -> Parent Directory  이전 디렉토리 (부모디렉토리)
