@@ -1,0 +1,5 @@
+install.packages("dplyr")  //디플라이어
+library(dplyr)어  //library는 로드를 뜻함
+df_raw <- data.frame(var1 = c(1,2,1),
+                     var2 = c(2,3,2))
+df_raw
