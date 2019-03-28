@@ -39,3 +39,4 @@ df
 df$var_mean <- (df$var + df$var2)/2
 df
 
+
