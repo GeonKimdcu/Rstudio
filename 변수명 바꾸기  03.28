@@ -24,3 +24,18 @@ df_mpg <- rename(df_mpg, city = cty)
 df_mpg <- rename(df_mpg, highway = hwy)
 df_mpg
 
+
+test <- data.frame("이름" = c("김지훈", "이유진", "박동현", "김민지"),
+                     "영어점수" = c(90, 80, 60, 70),
+                   "수학점수" = c(50, 60, 100, 20))
+test
+
+df <- data.frame(var = c(4, 3, 8),
+                 var2 = c(2, 6, 1))
+df
+#파생변수 생성
+df$var_sum <- df$var + df$var2
+df
+df$var_mean <- (df$var + df$var2)/2
+df
+
