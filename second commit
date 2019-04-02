@@ -1,4 +1,4 @@
-install.packages("readxl")
+install.packages("readxl")  ##dadasd
 library(readxl)
 df_exam <- read_excel("excel_exam.xlsx")
 df_exam
@@ -14,4 +14,3 @@ df_exam
 
 df_exam1 <- read_excel("excel_exam_sheet.xlsx", sheet = 3)
 df_exam1
-
