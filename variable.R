@@ -8,3 +8,4 @@ df
  df$var_mean <- (df$var1 + df$var2)/2  # var_mean  파생변수 생성 
 
  df
+a <- 1
