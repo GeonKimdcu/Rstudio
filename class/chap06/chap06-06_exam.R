@@ -2,26 +2,29 @@
 
 #Q1. 
 mpg <- as.data.frame(ggplot2::mpg)
-mpg_test <-mpg %>% 
+
+mpg %>% 
   group_by(class) %>% 
   summarise(mean_cty = mean(cty))
 
 # Q2.
-mpg_test %>% 
+mpg %>%
+  group_by(class) %>% 
+  summarise(mean_cty = mean(cty)) %>% 
   arrange(desc(mean_cty))
 
 # Q3.
-mpg_test <- mpg %>%
-  group_by(class) %>% 
+ mpg %>%
+  group_by(manufacturer) %>% 
   summarise(mean_hwy = mean(hwy)) %>% 
   arrange(desc(mean_hwy)) %>% 
   head(3)
-mpg_test
-
+ 
 # Q4.
-mpg_test <- mpg %>%
-  group_by(manufacturer) %>% 
+ mpg %>%
   filter(class == "compact") %>% 
-  summarise(n =n()) %>% 
-  arrange(desc(n))
-mpg_test
+  group_by(manufacturer) %>% 
+  summarise(count =n()) %>% 
+  arrange(desc(count))
+
+          
