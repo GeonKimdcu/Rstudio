@@ -17,7 +17,7 @@ ggplot(data=mpg, aes(x=drv))+geom_bar()
 
 ggplot(data=mpg, aes(x=hwy))+geom_bar()
 
-#혼자서 해보기 
+# 혼자서 해보기 
 # Q1.
 df <- mpg %>% 
   filter(class=="suv") %>% 
