@@ -1,3 +1,5 @@
+# 상자 그림 만들기
+# geom_boxplot()으로 상자 그림 표현 
 ggplot(data = mpg, aes(x = drv, y = hwy)) + geom_boxplot()
 
 # 혼자서 해보기
