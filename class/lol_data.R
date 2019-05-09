@@ -24,6 +24,12 @@ str(df)
 # 4~7열 Factor를 숫자로 변경, name 열 문자로 변경, help열 숫자로 변경
 str(df) 
 df[, 4:7] <- sapply(df[, 4:7], function(a){as.numeric(as.character(a))})
+# sapply(데이터 프레임, 함수) : 데이터 프레임 여러 변수에 함수 명령어 동시 적용  (결과는 벡터 또는 행렬)
+# Ex) sapply()함수를 활용하여 Cars93의 27개 변수 각각의 속성(class)를 알아보려면...
+# sapply(Cars93, class) 을 실행하면 됨. 하지만 만약 sapply()함수를 사용하지 않는다면,
+#- class(Cars93$Manufacturer); class(Cars93$Model); class(Cars93$Type);   ...(중략).... ; class(Cars93$Make)
+# function은 사용자 정의 함수이다.  function_name <- function(arg_1, arg_2, ...) { 함수본문 }
+
 df$name <- as.character(df$name)
 df$help <- as.numeric(sub("%", "", df$help))/100
 
