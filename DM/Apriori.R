@@ -20,3 +20,17 @@ rules <- apriori(trans, parameter=list(supp=0.2, conf=0.6, target = "rules"))
 rules
 # support: 지지도, confidence:신뢰도, lift: 향상도, count
 inspect(sort(rules)) 
+
+install.packages("sna")
+install.packages("rgl")
+library(sna)
+library(rgl)
+
+#visualization 
+b2 <- t(as.matrix(trans))%*% as.matrix(trans)
+b2.w <- b2 - diag(diag(b2)) 
+#rownames(b2.w)
+#colnames(b2.w) 
+gplot(b2.w , displaylabel=T , vertex.cex=sqrt(diag(b2)) ,
+      vertex.col = "Pink" , edge.col="grey" , boxed.labels=F ,
+      arrowhead.cex = .3 , label.pos = 3 , edge.lwd = b2.w*2) 
