@@ -40,7 +40,7 @@ install.packages("e1071")
 library(e1071) # confusionMatrix로 정확성 예측하기 위해 "e1071" 패키지 필요 
 confusionMatrix(rpartpred, test$AHD) # 정확성 예측 
 
-# party 패키지
+# party 패키지 - 가지치기 필요x
 install.packages("party")
 library(party)
 partymod<-ctree(AHD~., data=train)
