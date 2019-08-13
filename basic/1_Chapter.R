@@ -100,3 +100,98 @@ paste(y,2014:2015)
 paste("2020","12","31")
 paste("2020","12","31",sep="-") # '-'으로 구분 
 paste("2020","12","31",sep="")
+
+# Substr(문자열, 시작, 끝)
+substr("AppliedBDA",8,10)
+z<-"AppliedBDA"
+substr(z,nchar(z)-2,nchar(z))
+
+y<-c("Advanced","Data","Analytics")
+substr(y,1,3)
+
+# Logical
+(t<-TRUE)
+(t<-T)
+
+(f<-FALSE)
+(f<-F)
+
+# 논리연산자
+thisYear<-2014
+thisYear==2020
+thisYear!=2020
+
+thisYear<2020
+thisYear<=2020
+thisYear>2020
+thisYear>=2020
+
+## Matrix
+z<-c(11,21,31,12,22,32)
+(mat<-matrix(z,3,2))
+
+dim(mat)
+
+diag(mat)  # 대각행렬  
+
+t(mat)  # t() 전치함수...행렬이 바뀜 
+mat%*%t(mat)
+
+colnames(mat)<-c("F_col","S_col")
+rownames(mat)<-c("F_row","S_row","T_row")
+mat
+
+mat[1,] #첫째 행
+mat[,2] #둘째 열
+
+mat[c(1,2),c(2)]
+mat[c(1,2),c(2)] <- 2
+mat
+
+mat + 2000
+
+## list
+lst_z<-list("Wcup",2018,c(T,T,F))
+lst_z
+
+e1 <- c("Wcup","WBC")
+e2 <- matrix(c(2014,2018,2022,2006,2009,2013),3,2)
+e3 <- 10:1
+lst_y<-list(e1=e1,e2=e2,e3=e3)
+lst_y
+lst_y$e1
+
+# list 결합
+lst_x<-c(lst_z,lst_y)
+lst_x
+
+# unlist
+unlist(lst_x)
+
+## data frame
+rnk<-c(1,2,3,4)
+team<-c("GER","ARG","NED","BRA")
+wcup=data.frame(rnk,team)
+wcup
+
+# 조회
+wcup[1,2]
+wcup[,"team"]
+wcup$team
+wcup[wcup$rnk==4,]
+
+# rbind, cbind
+data(airquality)
+head(airquality) # 처음 6개 observation 조회
+
+newRow<-data.frame(Ozone=40, Solar.R=120, Wind=8, Temp=77, Month=10, Day=1)
+newRow
+
+new_aq_R<-rbind(airquality,newRow)  # rbind() 행결합 함수 
+tail(new_aq_R) # 마지막 6개 observation 조회
+dim(new_aq_R) 
+
+newCol<-1:nrow(new_aq_R)
+new_aq_RC<-cbind(new_aq_R,newCol)   # cbind() 열결합 함수 
+head(new_aq_RC,2) # 처음 2개 observation 조회
+tail(new_aq_RC,2) # 마지막 2개 observation 조회
