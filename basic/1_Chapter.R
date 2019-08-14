@@ -195,3 +195,162 @@ newCol<-1:nrow(new_aq_R)
 new_aq_RC<-cbind(new_aq_R,newCol)   # cbind() 열결합 함수 
 head(new_aq_RC,2) # 처음 2개 observation 조회
 tail(new_aq_RC,2) # 마지막 2개 observation 조회
+
+# subset(x = 데이터프레임, 벡터, 매트릭스, subset=조건 , 
+#select = 열을 가지고 있는 데이터 프레임만 가능)
+subset(airquality,select=c(Ozone,Solar.R,Wind,Temp),subset=(Wind>12.0 & Temp>80.0))
+subset(airquality,select=c(Ozone,Solar.R,Wind,Temp),subset=(Wind>20.0 | Temp>95.0))
+
+# merge(df1, df2, by="df1와 df1의 공통된 열의 이름")
+# 어떤 기준에 따라 데이터를 결합하느냐에 따라서 여러 종류로 나뉨
+# Inner join / Left Ourter join / Right Ourter join / Full Outter join 
+aq_1<-subset(airquality,select=c(Ozone,Wind,Month,Day),subset=(Wind>12.0 & Temp>80.0),sort =F) # sort 주어진 값정렬  F => 오름차순 T=> 내림차순 
+aq_1
+aq_2<-subset(airquality,select=c(Solar.R,Temp,Month,Day),subset=(Wind>12.0 & Temp>80.0),sort = F)
+aq_2
+mrg_aq<-merge(aq_1,aq_2,by=c("Month","Day"),sort = F)
+mrg_aq
+
+mrg_aq$Ozone==aq_1$Ozone
+mrg_aq$Solar.R==aq_2$Solar.R
+
+# grep(조회할 문자패턴, data)
+# Source: http://www.amstat.org/publications/jse/v17n1/datasets.mclaren.html
+
+amstat_movie<-read.delim("http://www.amstat.org/publications/jse/datasets/movietotal.dat.txt", sep = "\t")
+amstat_movie$MOVIE<-as.character(amstat_movie$MOVIE) # 문자형으로 변환
+grep("in",amstat_movie$MOVIE, ignore.case=F) # "in"이 포함된 observation의 위치
+amstat_movie[grep("in",amstat_movie$MOVIE, ignore.case=F),"MOVIE"]
+amstat_movie[grep("in",amstat_movie$MOVIE, ignore.case=T),"MOVIE"]
+# ignore.case => 패턴에서 대소문자 무시 
+
+
+## e) 자료형, 데이터 구조 변환하기
+z<-"2.78"
+z
+class(z)
+as.numeric(z)
+
+as.numeric("z")
+# 문자를 숫자로 변환하려 시도하였으나 불가하여 NA로 돌려줌.
+
+y<-2.78
+y
+
+class(y)
+as.character(y)
+
+as.numeric(TRUE)
+as.numeric(F)
+
+## 날짜로 변환(as.Date)
+x<-"2020-01-01"
+x
+class(x)
+x1<-as.Date(x)
+x1
+class(x1)
+
+w<-"01/31/2020"
+w1<-as.Date(w,format="%m/%d/%Y")
+w1
+
+# format(날짜,포맷)
+# as.character()
+
+as.Date("31/01/2020",format="%d/%m/%Y")
+format(Sys.Date(),format="%d/%m/%Y")
+format(Sys.Date(),'%a')
+format(Sys.Date(),'%b')
+format(Sys.Date(),'%B')
+format(Sys.Date(),'%d')
+format(Sys.Date(),'%m')
+format(Sys.Date(),'%y')
+format(Sys.Date(),'%Y')
+
+
+## f) Missing data
+z<-0/0   # 결과값 NaN => 수학적으로 정의 되지 않는 값을 의미 
+z
+is.nan(z) 
+is.na(z)
+
+y<-log(0)
+y # 결과값 -Inf => 무한대 
+is.finite(y) # 숫자 중에 NA, NaN, Inf, -Inf를 제외한 것
+is.nan(y)
+is.na(y)
+
+x<-NA
+is.na(x)
+is.nan(x)
+
+w<-c(1:3,NA)
+w
+is.na(w)
+
+
+## g) 벡터의 기본 연산
+z<-c(1,3,5,7,9,11,20)
+z*z
+
+(y<-z+z^2)
+(x<-1+z+z^3)
+
+mean(z)
+median(z)
+sd(z)   # 표준편차 
+var(z)  # 분산 
+sum((z-mean(z))^2)/(length(z)-1)
+
+cor(z,y)  # 상관계수 함수 
+cor(z,x)
+
+
+## h) 파일 읽기 등
+rank<-c(1,2,3,4)
+team<-c("GER","ARG","NED","BRA")
+wcup=data.frame(rank,team)
+
+# write.csv(변수이름, “지정할 파일이름.csv”)
+# read.csv("저장된 파일이름.csv")
+write.csv(wcup,"wcup.csv")
+w_cup<-read.csv("wcup.csv")
+str(w_cup)
+w_cup$team<-as.character(w_cup$team)
+
+tm<-as.vector(w_cup$team)
+rk<-as.vector(w_cup$rank)
+
+team==tm
+rank==rk
+
+# save(변수이름, file="지정할 데이터 파일이름.Rdata")
+# load("저장된 파일이름.Rdata")
+save(rank,team,file="wcup.rdata")
+load("wcup.rdata")
+
+# rm(object 명)
+rm(team,tm)
+# rm(list=ls()) # 모두 지우기
+
+# summary
+summary(w_cup) # 열별 data 요약
+
+# install.packages("package명"): package설치
+install.packages("party")
+
+# library(package명): package를 memory에 load
+library(party)
+
+# vignette(“알고싶은 package이름”): party에 대한 tutorial pdf파일
+vignette("party")
+
+# q(): R 종료
+
+# setwd(): 파일이나 데이터, script등을 저장하거나 불러오기할 때 working directory를 기준으로 가져옴. 이러한 작업폴더를 지정하는 명령
+# getwd(): 현재의 working directory를 알려주는 명령어
+
+# ? 명령어: 해당 명령어에 대한 help 보기. 현재 library가 load된 패키지가 제공하는 help만 검색
+
+# ?? 명령어: 해당 명령어에 대한 web을 통한 일반 검색
