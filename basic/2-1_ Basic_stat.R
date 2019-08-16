@@ -32,14 +32,14 @@ data(mtcars)
 # histogram
 hist(mtcars$mpg)
 
-#stem and leaf 
-stem(mtcars$hp)
+#stem and leaf   # 줄기잎그림 
+stem(mtcars$hp) 
 
-#line graph
+#line graph 선 그래프 
 library(ggplot2)
 ggplot(BOD, aes(x=BOD$Time, y=BOD$demand)) + geom_line()
 
-#scatter plot
+#scatter plot  산점도 
 ggplot(mtcars,aes(x=mtcars$hp, y=mtcars$wt)) + geom_point()
 
 
@@ -67,7 +67,7 @@ min(iris$Petal.Width)
 ###########################
 
 ## (5) 상관분석의 사례
-
+install.packages("Hmisc")
 library(Hmisc)   # install : install.packages(“Hmisc”)
 library(ggplot2)  # install : install.packages(“ggplot2”)
 data(airquality)
@@ -75,7 +75,7 @@ aq<-na.omit(airquality)
 head(aq)
 
 g <- ggplot(aq, aes(Ozone,Temp))
-g + geom_point() + geom_smooth(method="lm")
+g + geom_point() + geom_smooth(method="lm") # geom_smooth => 회귀선을 도출하는 함수 
 
 # (a) cor(): 두변수
 cor(aq$Ozone, aq$Temp)
@@ -119,13 +119,13 @@ plot(cars$speed, cars$dist)
 cor.test(cars$speed, cars$dist)
 
 # 회귀분석 실시
-m <- lm(dist~speed, data=cars)
+m <- lm(dist~speed, data=cars)  # 선형회귀 핵심 함수 
 summary(m)
 
 # test
 par(mfrow=c(2,2))
 plot(m)
-par(mfrow=c(1,1))
+par(mfrow=c(1,1))  # 그래픽 모양 조절 // mfrow => 한 화면에 여러 그래프 비교할 때 
 
 plot(cars$speed, cars$dist) # visualize regession model
 abline(coef(m))
@@ -161,12 +161,13 @@ par(mfrow=c(1,1))
 
 ## (4) 모델선택 사례
 data(mtcars)
+# 다중회귀분석 함수 step() 변수선택 방법들 
 
-# forward selection
+# forward selection 변수 추가해나가는 방법 
 step(lm(disp~1,data=mtcars), direction="forward", scope=(~mpg+cyl+hp+drat+wt))
 
-# backward selection
+# backward selection 변수를 삭제해나가는 방법 
 step(lm(disp~mpg+cyl+hp+drat+wt,data=mtcars), direction="backward")
 
-# both
+# both 추가와 삭제를 모두 사용한 방법 
 step(lm(disp~mpg+cyl+hp+drat+wt,data=mtcars), direction="both")
