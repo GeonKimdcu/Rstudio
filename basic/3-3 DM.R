@@ -19,7 +19,9 @@
 Final4_team <- c("GER","ARG","NED","BRA",NA) # 입력 
 is.na(Final4_team) # 확인 방법
 
-Final4<-data.frame(team=c("GER","ARG","NED","BRA","GER","BRA","ARG","NED"),stage=c(rep("F",2),rep("34",2),rep("QF",4)),res=c("1","0","0","3","1","7","0(2)","0(4)"))
+Final4<-data.frame(team=c("GER","ARG","NED","BRA","GER","BRA","ARG","NED"),
+                   stage=c(rep("F",2),rep("34",2),rep("QF",4)),
+                   res=c("1","0","0","3","1","7","0(2)","0(4)"))
 Final4 # rep -> 값을 반복해줌 
 
 Final4[Final4$stage=="QF","res"] <- NA # 대체 방법
