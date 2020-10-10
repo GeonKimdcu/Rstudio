@@ -18,7 +18,8 @@ Vec4 <- c(Vec2, Vec3)
 Vec4
 
 # 조건 5|
-test <- seq(15, 25, 5)
+test <- seq(-15, 25, 5)
+test <- seq(25, 15, -5)
 test
 
 # 조건 6|
@@ -76,6 +77,9 @@ library(stringr)
 
 # 조건 1|
 str_sub(Data2, 14, 19)
+
+# 조건 2|
+str_replace_all(Data2, '[0-9]{2}',"")
 
 # 조건 3|
 string_rep <- str_replace(Data2, "-", "/")
